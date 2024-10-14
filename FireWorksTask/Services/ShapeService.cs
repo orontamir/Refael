@@ -37,12 +37,17 @@ namespace FireWorks.Services
             try
             {
                 var random = new Random();
-                float width = random.Next(50, 200);
-                float height = random.Next(50, 200);
-                float startAngle = random.Next(50, 200);
-                float seepAngle = random.Next(50, 200);
-                Arc arc = new Arc(width, height, startAngle, seepAngle);
-                arc.DrawPoint(gr, pt, brush, pen);
+                float width = random.Next(10, 100);
+                float height = random.Next(10, 100);
+                float startAngle = random.Next(10, 100);
+                float seepAngle = random.Next(10, 100);
+                for (int i = 10; i< width; i++)
+                {
+                    Arc arc = new Arc(i, height + i, startAngle, seepAngle);
+                    arc.DrawPoint(gr, pt, brush, pen);
+                    await Task.Delay(200);
+                }
+               
                 return true;
             }
             catch (Exception ex) 
@@ -57,11 +62,16 @@ namespace FireWorks.Services
             try
             {
                 var random = new Random();
-                var point1 = new PointF(random.Next(10, 100), random.Next(10, 100));
-                var point2 = new PointF(random.Next(10, 100), random.Next(10, 100));
-                var point3 = new PointF(random.Next(10, 100), random.Next(10, 100));
-                Bezier bezier = new Bezier(point1, point2, point3);
-                bezier.DrawPoint(gr, pt, brush, pen);
+                var point1 = new PointF(random.Next(10, (int)pt.X + 50), random.Next(10, (int)pt.Y + 50));
+                var point2 = new PointF(random.Next(10, (int)pt.X + 50), random.Next(10, (int)pt.Y + 50));
+                var point3 = new PointF(random.Next(10, (int)pt.X + 50), random.Next(10, (int)pt.Y + 50));
+                for (float i = pt.X; i < Math.Abs(pt.X + point3.X); i++)
+                {
+                    PointF point4 = new PointF(i, point3.Y);
+                    Bezier bezier = new Bezier(point1, point2, point4);
+                    bezier.DrawPoint(gr, pt, brush, pen);
+                    await Task.Delay(200);
+                }
                 return true;
             }
             catch (Exception ex)
@@ -76,10 +86,14 @@ namespace FireWorks.Services
             try
             {
                 var random = new Random();
-                var radius = random.Next(10, 250);
-
-                Circle circle = new Circle(radius);
-                circle.DrawPoint(gr, pt, brush, pen);
+                var radius = random.Next(10, 100);
+                for (int i=10; i< radius; i++)
+                {
+                    Circle circle = new Circle(i);
+                    circle.DrawPoint(gr, pt, brush, pen);
+                    await Task.Delay(200);
+                }
+               
                 return true;
             }
             catch (Exception ex)
@@ -94,12 +108,17 @@ namespace FireWorks.Services
             try
             {
                 var random = new Random();
-                var point1 = new PointF(random.Next(10, 150), random.Next(50, 200));
-                var point2 = new PointF(random.Next(10, 150), random.Next(50, 200));
-                var point3 = new PointF(random.Next(10, 150), random.Next(50, 200));
-                var pointArray = new List<PointF> { point1, point2, point3 }.ToArray();
-                ClosedCurves closedCurves = new ClosedCurves(pointArray);
-                closedCurves.DrawPoint(gr, pt, brush, pen);
+                var point1 = new PointF(random.Next(10, (int)pt.X + 50), random.Next(10, (int)pt.Y + 50));
+                var point2 = new PointF(random.Next(10, (int)pt.X + 50), random.Next(10, (int)pt.Y + 50));
+                var point3 = new PointF(random.Next(10, (int)pt.X + 50), random.Next(10, (int)pt.Y + 50));
+                for (float i = pt.X; i < Math.Abs(pt.X + point3.X); i++)
+                {
+                    PointF point4 = new PointF(i, point3.Y);
+                    var pointArray = new List<PointF> { point1, point2, point4 }.ToArray();
+                    ClosedCurves closedCurves = new ClosedCurves(pointArray);
+                    closedCurves.DrawPoint(gr, pt, brush, pen);
+                    await Task.Delay(200);
+                }
                 return true;
             }
             catch (Exception ex)
@@ -114,10 +133,15 @@ namespace FireWorks.Services
             try
             {
                 var random = new Random();
-                float width = random.Next(50, 300);
-                float height = random.Next(50, 300);
-                Ellipse ellipse = new Ellipse(width, height);
-                ellipse.DrawPoint(gr, pt, brush, pen);
+                float width = random.Next(10, 100);
+                float height = random.Next(10, 100);
+                for (int i= 10; i< height; i++)
+                {
+                    Ellipse ellipse = new Ellipse(width + i, i);
+                    ellipse.DrawPoint(gr, pt, brush, pen);
+                    await Task.Delay(200);
+                }
+                
                 return true;
             }
             catch (Exception ex)
@@ -132,12 +156,16 @@ namespace FireWorks.Services
             try
             {
                 var random = new Random();
-                float width = random.Next(10, 200);
-                float height = random.Next(10, 200);
-                float startAngle = random.Next(10, 200);
-                float seepAngle = random.Next(10, 200);
-                Pie pie = new Pie(width, height, startAngle, seepAngle);
-                pie.DrawPoint(gr, pt, brush, pen);
+                float width = random.Next(10, 100);
+                float height = random.Next(10, 100);
+                float startAngle = random.Next(10, 100);
+                float seepAngle = random.Next(10, 100);
+                for (int i = 10; i < width; i++)
+                {
+                    Pie pie = new Pie(i, height + i, startAngle, seepAngle);
+                    pie.DrawPoint(gr, pt, brush, pen);
+                    await Task.Delay(200);
+                }
                 return true;
             }
             catch (Exception ex)
@@ -152,12 +180,17 @@ namespace FireWorks.Services
             try
             {
                 var random = new Random();
-                var point1 = new PointF(random.Next(10, 200), random.Next(10, 200));
-                var point2 = new PointF(random.Next(10, 200), random.Next(10, 200));
-                var point3 = new PointF(random.Next(10, 200), random.Next(10, 200));
-                var pointArray = new List<PointF> { point1, point2, point3 }.ToArray();
-                Polygon polygon = new Polygon(pointArray);
-                polygon.DrawPoint(gr, pt, brush, pen);
+                var point1 = new PointF(random.Next(10, (int)pt.X + 50), random.Next(10, (int)pt.Y + 50));
+                var point2 = new PointF(random.Next(10, (int)pt.X + 50), random.Next(10, (int)pt.Y + 50));
+                var point3 = new PointF(random.Next(10, (int)pt.X + 50), random.Next(10, (int)pt.Y + 50));
+                for (float i = pt.X; i < Math.Abs(pt.X + point3.X); i++)
+                {
+                    PointF point4 = new PointF(i, point3.Y);
+                    var pointArray = new List<PointF> { point1, point2, point4 }.ToArray();
+                    Polygon polygon = new Polygon(pointArray);
+                    polygon.DrawPoint(gr, pt, brush, pen);
+                    await Task.Delay(200);
+                }
                 return true;
             }
             catch (Exception ex)
@@ -172,12 +205,17 @@ namespace FireWorks.Services
             try
             {
                 var random = new Random();
-                var point1 = new PointF(random.Next(50, 200), random.Next(50, 200));
-                var point2 = new PointF(random.Next(50, 200), random.Next(50, 200));
-                var point3 = new PointF(random.Next(50, 200), random.Next(50, 200));
-                var pointArray = new List<PointF> { point1, point2, point3 }.ToArray();
-                Polyline polyline = new Polyline(pointArray);
-                polyline.DrawPoint(gr, pt, brush, pen);
+                var point1 = new PointF(random.Next(10, (int)pt.X + 50), random.Next(10, (int)pt.Y + 50));
+                var point2 = new PointF(random.Next(10, (int)pt.X + 50), random.Next(10, (int)pt.Y + 50));
+                var point3 = new PointF(random.Next(10, (int)pt.X + 50), random.Next(10, (int)pt.Y + 50));
+                for (float i = pt.X; i < Math.Abs(pt.X + point3.X); i++)
+                {
+                    PointF point4 = new PointF(i, point3.Y);
+                    var pointArray = new List<PointF> { point1, point2, point4 }.ToArray();
+                    Polyline polyline = new Polyline(pointArray);
+                    polyline.DrawPoint(gr, pt, brush, pen);
+                    await Task.Delay(200);
+                }
                 return true;
             }
             catch (Exception ex)
@@ -192,10 +230,14 @@ namespace FireWorks.Services
             try
             {
                 var random = new Random();
-                float width = random.Next(50, 200);
-                float height = random.Next(50, 200);
-                Shapes.Rectangle rectangle = new Shapes.Rectangle(width, height);
-                rectangle.DrawPoint(gr, pt, brush, pen);
+                float width = random.Next(10, 100);
+                float height = random.Next(10, 100);
+                for (int i = 10; i < width; i++)
+                {
+                    Shapes.Rectangle rectangle = new Shapes.Rectangle(i, height+ i);
+                    rectangle.DrawPoint(gr, pt, brush, pen);
+                    await Task.Delay(200);
+                }
                 return true;
             }
             catch (Exception ex)

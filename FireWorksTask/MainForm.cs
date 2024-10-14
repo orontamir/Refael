@@ -20,15 +20,37 @@ namespace RafaelInterview
 			this.CreateGraphics().SmoothingMode = SmoothingMode.AntiAlias;
 			//TODO Oron - Read all shapes that you want to drow from appsettings
             _ShapeService = new ShapeService();
+            Task.Factory.StartNew(() => Simulation());
 
         }
 
-		
+		private async Task Simulation()
+		{
+			while (true)
+			{
+				try
+				{
+					var random = new Random();
+					float x = random.Next(50, 500);
+					float y = random.Next(50, 300);
+					PointF point = new PointF(x, y);
+					await Task.Factory.StartNew(() => NewTarget(point));
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine($"Exception when running simulation, Error message {ex.Message}");
+				}
+				finally 
+				{
+					await Task.Delay(2000);
+				}
+			}
+		}
 
-		private void Form1_MouseClick(object sender, MouseEventArgs e)
+		private async void Form1_MouseClick(object sender, MouseEventArgs e)
 		{
 			PointF newP = new PointF(e.X, e.Y);
-			Task.Factory.StartNew(() => NewTarget(newP));
+			await Task.Factory.StartNew(() => NewTarget(newP));
 		}
 
 		private async Task NewTarget(PointF newP)
